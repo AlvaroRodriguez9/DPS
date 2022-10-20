@@ -1,7 +1,5 @@
 # dps-laboratory2
 
-# dps-laboratory2
-
 Para hacer funcionar GTest se han seguido los pasos de estas dos páginas web: 
 
 https://www.eriksmistad.no/getting-started-with-google-test-on-ubuntu/
