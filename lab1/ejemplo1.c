@@ -1,4 +1,3 @@
-
 /**
  *  
  * The student needs to compile, test and comment the source code file.
@@ -34,16 +33,19 @@ void gets_example_func(void) {
   buf[strlen(buf) - 1] = '\0';
 }
 
-//ESTA FUNCIÓN NO FUNCIONA BIEN POR STRRCHR. MIRAR https://wiki.sei.cmu.edu/confluence/display/c/STR30-C.+Do+not+attempt+to+modify+string+literals
-const char *get_dirname(const char *pathname) {
-  char *slash;
+char *get_dirname(const char *pathname, char *dirname, size_t size) {
+  const char *slash;
   slash = strrchr(pathname, '/');
   if (slash) {
-    *slash = '\0'; /* Undefined behavior */  
+    ptrdiff_t slash_idx = slash - pathname;
+    if ((size_t)slash_idx < size) {
+      memcpy(dirname, pathname, slash_idx);
+      dirname[slash_idx] = '\0';     
+      return dirname;
+    }
   }
-  return pathname;
+  return 0;
 }
- 
 
 void get_y_or_n(void) {  
 	char response[8];
@@ -60,12 +62,13 @@ void get_y_or_n(void) {
  
 int main(int argc, char *argv[])
 {
+    (void)argc;
     char key[24];
     char response[8];
     char array3[16];
     char array4[16];
     char array5 []  = "01234567890123456";
-    char *ptr_char  = "new string literal";
+    char ptr_char[]  = "new string literal";
     //int size_array1 = strlen("аналитик");
     //int size_array2 = 100;
     
@@ -73,7 +76,10 @@ int main(int argc, char *argv[])
    // char analitic2[size_array2]="аналитик";
    //char analitic3[100]="аналитик"; STR11-C
 
-    puts(get_dirname(__FILE__));
+    char dirname[260];
+    if (get_dirname(__FILE__, dirname, sizeof(dirname))) {
+        puts(dirname);
+    }
 
         
     strcpy(key, argv[1]);  
@@ -109,15 +115,14 @@ int main(int argc, char *argv[])
 
 /**
 Resolución de ejercicios 
-
 1.- se rompe la regla STR30-C "Do not attempt to modify string literals".
     se rompe la regla STR11-C "Do not specify the bound of a character array initialized with a string literal"
     se rompe la regla MSC34-C "Do not use deeprecated or obsolescent functions"
     se rompe la regla STR35-C "Do not copy data from an unbounded source to a fixed length array"
     se rompe la regla STR32-C "Do not pass a non-null-terminated character sequence to a library function that expects a string"
     se rompe la regla STR38-C "Do not confuse narrow and wide character strings and functions"
-
 2.- gcc -Wall -pedantic -std=c11 ejemplo1.c
     gcc -Wall -pedantic -std=c99 ejemplo1.c
-
 */
+
+
