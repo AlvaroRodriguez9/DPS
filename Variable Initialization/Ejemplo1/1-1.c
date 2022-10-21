@@ -38,5 +38,4 @@ int main(void) {
 La regla que se incumple es: DCL30-C. Declare objects with appropriate storage durations.
 Estamos declarando arrays y variables con una visibiidad local y luego queremos acceder a ellas 
 desde otra parte del programa. Esto hace que el resultado sea erronéo y aparezca basura en la ejecución.
-PRUEBA
 */
