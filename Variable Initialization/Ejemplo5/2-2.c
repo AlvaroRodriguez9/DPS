@@ -34,6 +34,13 @@ int main(int argc, char *argv[]){
         DCL00-C. Const-qualify immutable objects (La i en este caso nunca deberia cambiar) 
         DCL01-C. Do not reuse variable names in subscopes 
         INT08-C. Verify that all integer values are in range
-        
+    
+    3.- En esta carpeta dejo adjuntado las capturas de pantalla de las instrucciones en ensamblador. 
+        También se adjuntas capturas de las estadisticas que nos da perf y capturas de uso de 
+        valgrind y kcachegrind. 
+
+    4.- La instrucción que más tiempo de CPU requiere es el printf de la línea 20 ya que es la que más consume 
+        como se puede ver en la captura. Esto es así porque es la línea que llama a factorial y no acaba hasta que ha calculado 
+        todos los factoriales anteriores. 
 
 */
