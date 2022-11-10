@@ -15,3 +15,5 @@ y poner los paréntesis en los prints.
 segmento. Esto puede deberse a que en mi caso, en ensamblador, aparece la orden "endbr64" y en los apuntes no pero se ha intentado compilar el programa para 
 que no aparezca esa orden usando compilando con la opción `-mmanual-endbr` y el resultado ha sido el mismo. 
 He supuesto este problema debido a esta discusión en StackOverflow: https://stackoverflow.com/questions/56905811/what-does-the-endbr64-instruction-actually-do
+
+**ACTUALIZACIÓN:** Se ha conseguido hacer el heap overflow pasando el último script a python2 y poniendo la dirección de memoria en little endian. Se observa que se ha conseguido en la captura
